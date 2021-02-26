@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Statistics</title>
+  <link rel="stylesheet" href="bundle.css">
+</head>
+<body>
+  <div id="charts"></div>
+
+  <!-- This tool add opportunity handle web font loaded event -->
+  <!-- Need to initialize chart after web fonts loaded to normal display it -->
+  <!-- This tool not involved in charts work and used only in 20-34 lines of this html file -->
+  <script src="fontfaceobserver.js"></script>
+
+  <script src="bundle.js"></script>
+  <script>
+    (function() {
+      var fontsLoadPromises = [];
+      fontsLoadPromises.push((new FontFaceObserver('HelveticaNeue', {
+        weight: 400
+      })).load());
+      fontsLoadPromises.push((new FontFaceObserver('HelveticaNeue', {
+        weight: 600
+      })).load());
+      fontsLoadPromises.push((new FontFaceObserver('HelveticaNeue', {
+        weight: 700
+      })).load());
+
+      Promise.all(fontsLoadPromises).then(function() {
+        // Initialize charts after all webfonts loaded
+        new Charts('#charts');
+      });
+    })();
+  </script>
+</body>
+</html>
